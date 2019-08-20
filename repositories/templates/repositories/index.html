@@ -1,0 +1,9 @@
+{% if latest_repository_list %}
+    <ul>
+    {% for repository in latest_repository_list %}
+        <li><a href="/repository/{{ repository.id }}/">{{ repository.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No Repositories Searched.</p>
+{% endif %}
