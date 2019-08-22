@@ -1,14 +1,18 @@
+<form action="{% url 'repositories:search_results' %}" method="get">
+  <input name="q" type="text" placeholder="Search...">
+</form>
+
 {% if repository_list %}
     <ul>
         {% for repository in repository_list %}
-            <li>{{ repository.id }}</li>
             <li><a href="{% url 'repositories:detail' repository.id %}">{{ repository.name }}</a></li>
         {% endfor %}
     </ul>
 {% else %}
     <p>Are you logged in ?</p>
-    <form action="{% url 'repositories:button' %}" method="post">
+    <form action="{% url 'repositories:login' %}" method="post">
         {% csrf_token %}
         <input type="submit" value="Log In">
     </form>
 {% endif %}
+

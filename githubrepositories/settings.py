@@ -100,6 +100,17 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHLIB_OAUTH_CLIENTS = {
+    'github': {
+        'client_id': '181ce723b9ce46e40263',
+        'client_secret': 'f9e0cc40dc6f080c9752a0f79f258683601422a5',
+        'access_token_url': 'https://github.com/login/oauth/access_token',
+        'authorize_url': 'https://github.com/login/oauth/authorize',
+        'api_base_url': 'https://api.github.com/',
+        'client_kwargs': {'scope': 'repo'}
+    }
+}
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/

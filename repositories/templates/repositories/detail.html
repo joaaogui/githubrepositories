@@ -1,1 +1,14 @@
-<h1>Página X</h1>
+<h1>{{ context.id }}</h1>
+<h1>{{ context.name }}</h1>
+<h1>{{ context.description }}</h1>
+<h1>{{ context.created_at }}</h1>
+
+<form action="{% url 'repositories:create_tag' %}" method="post">
+    {% csrf_token %}
+    <input id="tag" type="text" name="tag" value="Default name for tag.">
+    <input type="submit" value="Log In">
+</form>
+
+{#<form action="/create_post/" method="POST" id="post-form">#}
+{##}
+{#<script src="../static/repositories/main.js"></script>#}
