@@ -9,7 +9,6 @@
         {% endfor %}
     </ul>
 {% else %}
-    <p>Are you logged in ?</p>
     <form action="{% url 'repositories:login' %}" method="post">
         {% csrf_token %}
         <input type="submit" value="Log In">

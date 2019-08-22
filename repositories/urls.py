@@ -12,6 +12,5 @@ urlpatterns = [
     path('login/', views.login, name='login'),
     path('create_tag/', views.create_tag, name='create_tag'),
     path('callback/', views.authorize),
-    path('repositories/', views.repos),
     path('search_results/', SearchResultsView.as_view(), name='search_results'),
 ]

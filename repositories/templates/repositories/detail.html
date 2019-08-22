@@ -6,9 +6,5 @@
 <form action="{% url 'repositories:create_tag' %}" method="post">
     {% csrf_token %}
     <input id="tag" type="text" name="tag" value="Default name for tag.">
-    <input type="submit" value="Log In">
+    <input type="submit" value="Submit">
 </form>
-
-{#<form action="/create_post/" method="POST" id="post-form">#}
-{##}
-{#<script src="../static/repositories/main.js"></script>#}
