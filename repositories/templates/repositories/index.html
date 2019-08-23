@@ -218,20 +218,25 @@
                                         </a>
                                     </td>
                                     <td>
-                                        <form action="{% url 'repositories:add_tag' repository.id  %}" method="POST" class="post-form">
+                                        <form action="{% url 'repositories:add_tag' repository.id %}" method="POST"
+                                              class="post-form">
                                             {% csrf_token %}
                                             <input type="text"
                                                    name="tag"
                                                    class="form-control form-control-rounded form-control-prepended"
                                                    placeholder="Add your tag" aria-label="Add your tag"></form>
                                     <td>
-                                        <span class="badge badge-primary">Primary</span>
+                                        {% for tag in repository.tags %}
+                                            <span class="badge badge-primary">{{ tag }}</span>
+                                        {% endfor %}
                                     </td>
 
                                     <td class="text-right">
                                         <div class="dropdown">
-                                            <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
-                                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <a class="btn btn-sm btn-icon-only text-light" href="#"
+                                               role="button"
+                                               data-toggle="dropdown" aria-haspopup="true"
+                                               aria-expanded="false">
                                                 <i class="fas fa-ellipsis-v"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">

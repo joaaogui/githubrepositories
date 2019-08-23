@@ -14,11 +14,10 @@ def home(request):
         db_repos = list(Repository.objects.all().values_list('id', flat=True))
 
         for repo in g.get_user().get_repos():
+            if str(repo.id) in db_repos:
+                repoX = Repository.objects.get(id=repo.id)
+                repo.tags = list(repoX.tags.names())
             repository_list.append(repo)
-            print(type(repo.id))
-            print(type(db_repos))
-            if repo.id in db_repos:
-                print(type(repo))
         return (render(request, 'repositories/index.html', {"repository_list": repository_list}))
     else:
         return (render(request, 'repositories/index.html'))
