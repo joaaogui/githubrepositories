@@ -13,6 +13,7 @@
 =========================================================
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
+{% load socialaccount %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -156,18 +157,26 @@
                 <span class="avatar avatar-sm rounded-circle">
                   <img alt="Image placeholder" src="../../static/repositories/img/icons/user.jpg">
                 </span>
-                            <div class="media-body ml-2 d-none d-lg-block">
-                                <span class="mb-0 text-sm  font-weight-bold">Jessica Jones</span>
-                            </div>
+                            {% if user.is_authenticated %}
+                                <div class="media-body ml-2 d-none d-lg-block">
+                                    <span class="mb-0 text-sm font-weight-bold">{{user.get_username}}</span>
+                                </div>
+                            {% else %}
+                                <div class="media-body ml-2 d-none d-lg-block">
+                                    <a href="{% provider_login_url 'github' %}"> Log In
+                                    <span class="mb-0 text-sm font-weight-bold">Log In</span>
+                                    </a>
+                                </div>
+                            {% endif %}
                         </div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
                         <div class=" dropdown-header noti-title">
                             <h6 class="text-overflow m-0">Welcome!</h6>
                         </div>
-                        <a href="../examples/profile.html" class="dropdown-item">
+                        <a href="/accounts/logout/" class="dropdown-item">
                             <i class="ni ni-single-02"></i>
-                            <span>My profile</span>
+                            <span>Log Out</span>
                         </a>
                     </div>
                 </li>
@@ -180,7 +189,7 @@
     </div>
     <div class="container-fluid mt--7">
         <!-- Table -->
-        {% if repository_list %}
+        {% if user.is_authenticated %}
             <div class="row">
                 <div class="col">
                     <div class="card shadow">
@@ -278,13 +287,10 @@
                 </div>
             </div>
         {% else %}
-            <h1>Login into your Github Account</h1>
-            <h1>Login into your Github Account</h1>
-            <h1>Login into your Github Account</h1>
-            <form action="{% url 'repositories:login' %}" method="post">
-                {% csrf_token %}
-                <input type="submit" value="Log In">
-            </form>
+            <h1>Log In </h1>
+            <h1>Log In </h1>
+            <h1>Log In </h1>
+            <h1>Log In </h1>
         {% endif %}
 
         <footer class="footer">
