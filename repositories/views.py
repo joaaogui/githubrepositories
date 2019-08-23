@@ -4,7 +4,7 @@ from authlib.django.client import OAuth
 from django.shortcuts import redirect
 from github import Github
 from django.views.generic import ListView
-from .models import Repository, OAuth2Token, Tag
+from .models import Repository, Tag
 
 oauth = OAuth()
 
@@ -39,8 +39,8 @@ def login(request):
 def authorize(request):
     token = oauth.github.authorize_access_token(request)
     # resp = oauth.github.get('user')
-    OAuth2Token.objects.get_or_create(name='github', user=request.user, access_token=token.get("access_token", None))
     token = token.get("access_token", None)
+    request.session["token"] = token
     repository_list = []
     g = Github(token)
     for x in g.get_user().get_repos(visibility='all'):
@@ -49,17 +49,9 @@ def authorize(request):
     return render(request, 'repositories/index.html', {'repository_list': repository_list})
 
 
-def fetch_token(request):
-    item = OAuth2Token.objects.filter(
-        name='github',
-        user=request.user
-    )
-    return item.last().to_token()
-
-
 def detail(request, repository_id):
-    token = fetch_token(request)
-    g = Github(token.get("access_token", None))
+    token = request.session['token']
+    g = Github(token)
     repo = g.get_repo(repository_id)
 
     # TODO: get tags to show in detail
