@@ -101,27 +101,15 @@
                     </div>
                 </div>
             </div>
-            <!-- Form -->
-            <form class="mt-4 mb-3 d-md-none">
-                <div class="input-group input-group-rounded input-group-merge">
-                    <input type="search" class="form-control form-control-rounded form-control-prepended"
-                           placeholder="Search" aria-label="Search">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <span class="fa fa-search"></span>
-                        </div>
-                    </div>
-                </div>
-            </form>
             <!-- Navigation -->
             <ul class="navbar-nav">
                 <li class="nav-item  class=" active
                 " ">
-                <a class=" nav-link " href=" ../index.html"> <i class="ni ni-tv-2 text-primary"></i> Repositories
+                <a class=" nav-link " href="/"> <i class="ni ni-tv-2 text-primary"></i> Repositories
                 </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="../examples/icons.html">
+                    <a class="nav-link " href="../tags">
                         <i class="ni ni-planet text-blue"></i> Tags
                     </a>
                 </li>
@@ -137,7 +125,7 @@
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
         <div class="container-fluid">
             <!-- Form -->
-            <form action="{% url 'repositories:search_results' %}" method="get"
+            <form action="" method="get"
                   class="navbar-search navbar-search-dark " style="width: 85%">
                 <div class="form-group mb-0" style="width: 100%">
                     <div class="input-group input-group-alternative" style="width: 100%">
@@ -159,12 +147,12 @@
                 </span>
                             {% if user.is_authenticated %}
                                 <div class="media-body ml-2 d-none d-lg-block">
-                                    <span class="mb-0 text-sm font-weight-bold">{{user.get_username}}</span>
+                                    <span class="mb-0 text-sm font-weight-bold">{{ user.get_username }}</span>
                                 </div>
                             {% else %}
                                 <div class="media-body ml-2 d-none d-lg-block">
                                     <a href="{% provider_login_url 'github' %}"> Log In
-                                    <span class="mb-0 text-sm font-weight-bold">Log In</span>
+                                        <span class="mb-0 text-sm font-weight-bold">Log In</span>
                                     </a>
                                 </div>
                             {% endif %}
@@ -200,69 +188,44 @@
                             <table class="table align-items-center table-fixed">
                                 <thead class="thead-light">
                                 <tr>
-                                    <th style="width: 5%;" scope="col">Repository Name</th>
-                                    <th style="width: 5%;" scope="col">Id</th>
-                                    <th style="width: 80%;" scope="col">Description</th>
-                                    <th style="width: 5%;" scope="col">Tags</th>
-                                    <th style="width: 5%;" scope="col"></th>
+                                    <th scope="col">Repository Name</th>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Add Tags</th>
+                                    <th scope="col">Tags</th>
+                                    <th scope="col"></th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 {% for repository in repository_list %}
-                                    <tr onclick="window.location='\     ';">
-                                    <a href="google.com">
-                                        <td scope="row">
-                                            <div class="media align-items-center">
-                                                <a href="#" class="avatar rounded-circle mr-3">
-                                                    <img alt="Image placeholder"
-                                                         src="../../static/repositories/img/theme/bootstrap.jpg">
-                                                </a>
-                                                <div class="media-body">
-                                                    <a href="{% url 'repositories:detail' repository.id %}">
-
-                                                        <span class="mb-0 text-sm">{{ repository.name }}</span>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </th>
-                                        <td>
-                                            <a href="{% url 'repositories:detail' repository.id %}">
-                                                {{ repository.id }}
+                                    <tr onclick="window.location='\';">
+                                    <td scope="row">
+                                        <div class="media align-items-center">
+                                            <a href="#" class="avatar rounded-circle mr-3">
+                                                <img alt="Image placeholder"
+                                                     src="../../static/repositories/img/theme/bootstrap.jpg">
                                             </a>
-                                        </td>
-                                        <td>
-                                    </a>
-                                    <span class="badge badge-dot mr-4">
-                        <i class="bg-warning"></i>{{ repository.description }}
-                      </span>
+                                            <div class="media-body">
+                                                <a href="{% url 'repositories:detail' repository.id %}">
+
+                                                    <span class="mb-0 text-sm">{{ repository.name }}</span>
+                                                </a>
+                                            </div>
+                                        </div>
                                     </td>
                                     <td>
-                                        <div class="avatar-group">
-                                            <a href="#" class="avatar avatar-sm" data-toggle="tooltip"
-                                               data-original-title="Ryan Tompson">
-                                                <img alt="Image placeholder"
-                                                     src="../../static/repositories/img/theme/team-1-800x800.jpg"
-                                                     class="rounded-circle">
-                                            </a>
-                                            <a href="#" class="avatar avatar-sm" data-toggle="tooltip"
-                                               data-original-title="Romina Hadid">
-                                                <img alt="Image placeholder"
-                                                     src="../../static/repositories/img/theme/team-2-800x800.jpg"
-                                                     class="rounded-circle">
-                                            </a>
-                                            <a href="#" class="avatar avatar-sm" data-toggle="tooltip"
-                                               data-original-title="Alexander Smith">
-                                                <img alt="Image placeholder"
-                                                     src="../../static/repositories/img/theme/team-3-800x800.jpg"
-                                                     class="rounded-circle">
-                                            </a>
-                                            <a href="#" class="avatar avatar-sm" data-toggle="tooltip"
-                                               data-original-title="Jessica Doe">
-                                                <img alt="Image placeholder"
-                                                     src="../../static/repositories/img/theme/team-4-800x800.jpg"
-                                                     class="rounded-circle">
-                                            </a>
-                                        </div>
+                                        <a href="{% url 'repositories:detail' repository.id %}">
+                                            {{ repository.id }}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <form action="{% url 'repositories:add_tag' repository.id  %}" method="POST" class="post-form">
+                                            {% csrf_token %}
+                                            <input type="text"
+                                                   name="tag"
+                                                   class="form-control form-control-rounded form-control-prepended"
+                                                   placeholder="Add your tag" aria-label="Add your tag"></form>
+                                    <td>
+                                        <span class="badge badge-primary">Primary</span>
                                     </td>
 
                                     <td class="text-right">

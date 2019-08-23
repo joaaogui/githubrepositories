@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',  # new
     'allauth.socialaccount.providers.github',  # new
 
+    'taggit',
+
 ]
 
 SOCIALACCOUNT_PROVIDERS = {
@@ -133,6 +135,7 @@ SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
 ACCOUNT_LOGOUT_ON_GET = True
 
+TAGGIT_CASE_INSENSITIVE = True
 
 
 # Internationalization

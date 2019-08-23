@@ -3,8 +3,3 @@
 <h1>{{ context.description }}</h1>
 <h1>{{ context.created_at }}</h1>
 
-<form action="{% url 'repositories:create_tag' %}" method="post">
-    {% csrf_token %}
-    <input id="tag" type="text" name="tag" value="Default name for tag.">
-    <input type="submit" value="Submit">
-</form>
