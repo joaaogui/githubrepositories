@@ -129,7 +129,8 @@
         <div class="container-fluid">
             <!-- Form -->
             <form action="{% url 'repositories:search' %}" method="get"
-                  class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto" style="width: 85%">
+                  class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto"
+                  style="width: 85%">
                 <div class="form-group mb-0" style="width: 100%">
                     <div class="input-group input-group-alternative" style="width: 100%">
                         <div class="input-group-prepend">
@@ -149,20 +150,12 @@
                     <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
                        aria-expanded="false">
                         <div class="media align-items-center">
-                <span class="avatar avatar-sm rounded-circle">
-                  <img alt="Image placeholder" src="../../static/repositories/img/icons/user.jpg">
-                </span>
-                            {% if user.is_authenticated %}
+                            <span class="avatar avatar-sm rounded-circle">
+                                <i class="ni ni-single-02"></i>
+                            </span>
                                 <div class="media-body ml-2 d-none d-lg-block">
                                     <span class="mb-0 text-sm font-weight-bold">{{ user.get_username }}</span>
                                 </div>
-                            {% else %}
-                                <div class="media-body ml-2 d-none d-lg-block">
-                                    <a href="{% provider_login_url 'github' %}"> Log In
-                                        <span class="mb-0 text-sm font-weight-bold">Log In</span>
-                                    </a>
-                                </div>
-                            {% endif %}
                         </div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
@@ -184,7 +177,6 @@
     </div>
     <div class="container-fluid mt--7">
         <!-- Table -->
-        {% if user.is_authenticated %}
             <div class="row">
                 <div class="col">
                     <div class="card shadow">
@@ -199,7 +191,7 @@
                                     <th scope="col">Id</th>
                                     <th scope="col">Add Tags</th>
                                     <th scope="col">Tags</th>
-                                    <th scope="col"></th>
+                                    <th scope="col">Actions</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -225,7 +217,8 @@
                                         </a>
                                     </td>
                                     <td>
-                                        <form action="{% url 'repositories:add_tag' repository_id=repository.id repository_name=repository.name %}" method="POST"
+                                        <form action="{% url 'repositories:add_tag' repository_id=repository.id repository_name=repository.name %}"
+                                              method="POST"
                                               class="post-form">
                                             {% csrf_token %}
                                             <input type="text"
@@ -246,10 +239,8 @@
                                                aria-expanded="false">
                                                 <i class="fas fa-ellipsis-v"></i>
                                             </a>
-                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                <a class="dropdown-item" href="#">Action</a>
-                                                <a class="dropdown-item" href="#">Another action</a>
-                                                <a class="dropdown-item" href="#">Something else here</a>
+                                            <div class="dropdown-menu dropdown-menu-left dropdown-menu-arrow">
+                                                <a class="dropdown-item" href="{% url 'repositories:detail' repository.id %}">Remove tag(s) from this repository</a>
                                             </div>
                                         </div>
                                     </td>
@@ -261,12 +252,6 @@
                     </div>
                 </div>
             </div>
-        {% else %}
-            <h1>Log In </h1>
-            <h1>Log In </h1>
-            <h1>Log In </h1>
-            <h1>Log In </h1>
-        {% endif %}
 
         <footer class="footer">
             <div class="row align-items-center justify-content-xl-between">

@@ -5,7 +5,6 @@ from .models import Repository
 from taggit.models import Tag
 
 
-
 def home(request):
     if request.user.is_authenticated:
         access_token = SocialToken.objects.get(account__user=request.user,
@@ -27,7 +26,9 @@ def home(request):
 def detail(request, repository_id):
     access_token = SocialToken.objects.get(account__user=request.user,
                                            account__provider='github')
+    print(access_token)
     g = Github(str(access_token))
+
     repo = g.get_repo(repository_id)
 
     if len(Repository.objects.filter(id=repository_id)):
@@ -47,6 +48,7 @@ def detail(request, repository_id):
 
     return render(request, 'repositories/detail.html', {'repository': repository})
 
+
 def add_tag(request, repository_id, repository_name):
     if request.method == "POST":
         repo, exists = Repository.objects.get_or_create(id=repository_id, name=repository_name)
@@ -54,10 +56,12 @@ def add_tag(request, repository_id, repository_name):
         repo.save()
     return redirect('/')
 
+
 def remove_tag(request, tag_slug):
     tag = Tag.objects.get(slug=tag_slug)
     tag.delete()
     return redirect('/tags/')
+
 
 def remove_tag_repository(request, tag_name, repository_id):
     repo, exists = Repository.objects.get_or_create(id=repository_id)
@@ -78,4 +82,3 @@ def search(request):
         repo.tags = list(repo.tags.names())
         repository_list.append(repo)
     return render(request, 'repositories/index.html', {"repository_list": repository_list})
-
