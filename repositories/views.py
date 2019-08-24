@@ -1,6 +1,5 @@
 from allauth.socialaccount.models import SocialToken
 from django.shortcuts import render, redirect
-from django.views.generic import ListView
 from github import Github
 from .models import Repository
 
@@ -44,8 +43,19 @@ def detail(request, repository_id):
 
 def add_tag(request, repository_id):
     if request.method == "POST":
-        print(request.POST.get('tag'))
         repo, exists = Repository.objects.get_or_create(id=repository_id)
         repo.tags.add(request.POST.get('tag'))
         repo.save()
     return redirect('/')
+
+def search(request):
+    input = request.GET.get('tag')
+    repos = Repository.objects.filter(tags__name__in=[input])
+    repository_list = []
+    for repo in repos:
+        repo.tags = list((repo.tags.names()))
+        repository_list.append(repo)
+    # print(repos[0].tags.names())
+    # print(repos)
+    return render(request, 'repositories/index.html', {"repository_list": repository_list})
+
