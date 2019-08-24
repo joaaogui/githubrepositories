@@ -129,7 +129,7 @@
         <div class="container-fluid">
             <!-- Form -->
             <form action="{% url 'repositories:search' %}" method="get"
-                  class="navbar-search navbar-search-dark " style="width: 85%">
+                  class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto" style="width: 85%">
                 <div class="form-group mb-0" style="width: 100%">
                     <div class="input-group input-group-alternative" style="width: 100%">
                         <div class="input-group-prepend">
@@ -225,12 +225,12 @@
                                         </a>
                                     </td>
                                     <td>
-                                        <form action="{% url 'repositories:add_tag' repository.id %}" method="POST"
+                                        <form action="{% url 'repositories:add_tag' repository_id=repository.id repository_name=repository.name %}" method="POST"
                                               class="post-form">
                                             {% csrf_token %}
                                             <input type="text"
                                                    name="tag"
-                                                   class="form-control form-control-rounded form-control-prepended"
+                                                   class=".input-table form-control form-control-rounded form-control-prepended"
                                                    placeholder="Add your tag" aria-label="Add your tag"></form>
                                     <td>
                                         {% for tag in repository.tags %}

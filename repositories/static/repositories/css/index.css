@@ -17475,21 +17475,11 @@ textarea[resize="horizontal"] {
         border-bottom: 0;
     }
 
-    input {
+    .input-table {
         width: 100%;
         box-sizing: border-box;
-        /*display: block !important;*/
-        /*padding: 0 !important;*/
-        /*margin: 0 !important;*/
-        /*border: 10px !important;*/
-        /*border-radius: 2px !important;*/
-        /*line-height: 1 !important;*/
     }
 
-    /*td {*/
-    /*    margin: 0 !important;*/
-    /*    padding: 0 !important;*/
-    /*}*/
 
 
     .navbar-vertical.navbar-expand-xl .navbar-nav .nav .nav-link {
@@ -18445,6 +18435,11 @@ textarea[resize="horizontal"] {
 .table-flush tbody tr:last-child td,
 .table-flush tbody tr:last-child th {
     border-bottom: 0;
+}
+
+.card-tag {
+    margin-bottom: 10px !important;
+    border-color: #ccc;
 }
 
 .card .table {

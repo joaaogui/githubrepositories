@@ -188,18 +188,18 @@
         <div class="header-body">
             <!-- Card stats -->
             <div class="row">
-                {% for tag in repository.tags %}
+                {% for tag in tag_list %}
                     <div class="col-xl-3 col-lg-6">
                         <div class="card-tag card card-stats mb-4 mb-xl-0">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
                                         <span class="h2 font-weight-bold "
-                                              style="border-bottom: 4px;">{{ tag }}</span>
+                                              style="border-bottom: 4px;">{{ tag.name }}</span>
                                     </div>
                                     <div>
-                                        <a href="{% url 'repositories:remove_tag_repository' tag_name=tag repository_id=repository.id %}"
-                                           class="btn btn-outline-danger">Remove Tag From This Repository</a>
+                                        <a href="{% url 'repositories:remove_tag' tag.slug %}"
+                                           class="btn btn-outline-danger">Remove Tag</a>
                                     </div>
                                 </div>
                             </div>
