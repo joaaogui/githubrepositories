@@ -1,0 +1,12 @@
+language: python
+
+python:
+    - "3.7"
+services:
+    - postgresql
+env: # => 4
+    -DJANGO=2.2.4 DB=postgresql
+install: # => 5
+    - pip3 install -r requirements.txt
+script: 
+    - pytest
