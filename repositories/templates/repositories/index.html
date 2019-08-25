@@ -170,7 +170,7 @@
                                                  src="../../static/repositories/img/theme/bootstrap.jpg">
                                         </a>
                                         <div class="media-body">
-                                            <a href="{% url 'repositories:detail' repository.id %}">
+                                            <a href="{% url 'repositories:repository_detail' repository.id %}">
 
                                                 <span class="mb-0 text-sm">{{ repository.name }}</span>
                                             </a>
@@ -178,7 +178,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <a href="{% url 'repositories:detail' repository.id %}">
+                                    <a href="{% url 'repositories:repository_detail' repository.id %}">
                                         {{ repository.id }}
                                     </a>
                                 </td>
@@ -208,7 +208,7 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-left dropdown-menu-arrow">
                                             <a class="dropdown-item"
-                                               href="{% url 'repositories:detail' repository.id %}">Remove tag(s) from
+                                               href="{% url 'repositories:repository_detail' repository.id %}">Remove tag(s) from
                                                 this repository</a>
                                         </div>
                                     </div>
