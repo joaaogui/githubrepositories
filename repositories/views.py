@@ -50,10 +50,10 @@ def detail(request, repository_id):
 
 
 def add_tag(request, repository_id, repository_name):
-    if request.method == "POST":
-        repo, exists = Repository.objects.get_or_create(id=repository_id, name=repository_name)
-        repo.tags.add(request.POST.get('tag'))
-        repo.save()
+    repo, exists = Repository.objects.get_or_create(id=repository_id, name=repository_name)
+    print(repo)
+    repo.tags.add(request.POST.get('tag'))
+    repo.save()
     return redirect('/')
 
 
