@@ -21,6 +21,15 @@ $ python manage.py createsuperuser (Necessary for github oauth configuration)
 $ python manage.py runserver
 ```
 
+## Running with docker
+
+```bash
+$ git clone https://github.com/joaaogui/githubrepositories.git
+$ cd githubrepositories
+$ sudo docker-compose up 
+```
+
+
 # Adding enviroment variables
 
 To customize some enviroment variables create the file  `.env` on `./githubrepositories/` with the following information:
