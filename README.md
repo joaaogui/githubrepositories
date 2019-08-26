@@ -50,7 +50,7 @@ In this project, there are a few oflibraries that was used:
 
 # Database Migration and user creation
 
-Basic django migrations and user creation. Note: The super user is necessary for the right configuration of allauth
+Basic django migrations and user creation. Note: The super user is necessary for the right configuration of allauth. Check in: https://django-allauth.readthedocs.io/en/latest/installation.html#post-installation
 
 ```bash
 $ python manage.py migrate
