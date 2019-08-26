@@ -1,5 +1,5 @@
 # githubrepositories
-A simple django application that shows your repositories, and lets you change it's tags.  
+A simple django application that shows your repositories, and lets you add tags to it.  
 
 [![Build Status](https://travis-ci.org/joaaogui/githubrepositories.svg?branch=master)](https://travis-ci.org/joaaogui/githubrepositories)
 
@@ -11,11 +11,13 @@ A simple django application that shows your repositories, and lets you change it
 
 # Installation
 
+OBS: You should check https://github.com/joaaogui/githubrepositories#adding-enviroment-variables before installing
+
 ```bash
 $ git clone https://github.com/joaaogui/githubrepositories.git
 $ cd githubrepositories
 $ workon <MyVirtualEnv>
-$ pip install -r requirements.txt
+$ pip install -r requirements.txt 
 $ python manage.py migrate
 $ python manage.py createsuperuser (Necessary for github oauth configuration)
 $ python manage.py runserver
