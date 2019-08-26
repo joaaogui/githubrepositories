@@ -22,6 +22,7 @@ $ python manage.py migrate
 $ python manage.py createsuperuser (Necessary for github oauth configuration)
 $ python manage.py runserver
 ```
+PS: If you try to connect your github account before checking https://django-allauth.readthedocs.io/en/latest/installation.html#post-installation, you will receive a error, add your site and domain, and then try to connect your github account.
 
 ## Running with docker
 
