@@ -6,20 +6,33 @@ from taggit.models import Tag, TaggedItem
 
 pytestmark = pytest.mark.django_db
 
+@pytest.fixture
+def repository():
+    '''Returns a Repository instance'''
 
-class TestRepositoryModel:
+    repository = Repository.objects.create(
+        id="12345678",
+        name="Test Repository",
+        tags=["Test_tag_1", "Test_tag_2"]
+    )
+    return repository
 
-    def test_save(self):
-        repository = Repository.objects.create(
-            id = "12345678",
-            name ="Test Repository",
-            tags = ["Test_tag_1", "Test_tag_2"]
-        )
-        assert repository.name == "Test Repository"
-        assert repository.id == "12345678"
-        assert repository.tags[0] ==  "Test_tag_1"
-        assert repository.tags[1] ==  "Test_tag_2"
-        assert len(repository.tags) == 2
 
-    # def test_tag_adding(self):
 
+def test_save(repository):
+
+    assert repository.name == "Test Repository"
+    assert repository.id == "12345678"
+    assert repository.tags[0] == "Test_tag_1"
+    assert repository.tags[1] == "Test_tag_2"
+    assert len(repository.tags) == 2
+
+
+def test_name_max_length(repository):
+    max_length = repository._meta.get_field('name').max_length
+    assert max_length == 50
+
+
+def test_id_max_length(repository):
+    max_length = repository._meta.get_field('id').max_length
+    assert max_length == 50
